@@ -1,0 +1,87 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+/**
+ * @var Mage_Page_Block_Html_Header $this
+ */
+?>
+<div class="header-container">
+    <div class="header">
+        <div class="social_links">
+            <span>Follow Us</span>
+            <div class="social_icons">
+                <a href="#"><img src='/ewc/skin/frontend/default/default/images/icon_rss.png' alt=''/></a>
+                <a href="#"><img src='/ewc/skin/frontend/default/default/images/icon_fb.png' alt=''/></a>
+                <a href="#"><img src='/ewc/skin/frontend/default/default/images/icon_tw.png' alt=''/></a>
+                <a href="#"><img src='/ewc/skin/frontend/default/default/images/icon_gl.png' alt=''/></a>
+            </div>
+        </div>
+        <?php if ($this->getIsHomePage()):?>
+        <div class="logo"><a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>"><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a></div>
+        <?php else:?>
+        <a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><strong><?php echo $this->getLogoAlt() ?></strong><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a>
+        <?php endif?>
+        <div class="quick-access">
+            <?php// echo $this->getChildHtml('topLinks') ?>
+            <div class="links">
+                <div class="my_account">
+                    <img src="/ewc/skin/frontend/default/default/images/icon_my_account.png" alt="" /><a href="index.php/customer/account/login/">My Account</a>
+                </div>
+                <div class="shopping_bag">
+                    <img src="/ewc/skin/frontend/default/default/images/icon_shopping_bag.png" alt="" /><a href="#">Shopping bag (1)</a>
+                </div>
+                <div class="shopping_list">
+                    <img src="/ewc/skin/frontend/default/default/images/icon_shopping_list.png" alt="" /><a href="#">Shopping list</a>
+                </div>
+            </div>
+
+            <?php echo $this->getChildHtml('store_language'); ?>
+        </div>
+        <?php echo $this->getChildHtml('topContainer'); ?>
+    </div>
+
+    <div class="navigation">
+        <ul id="cnav">
+            <li class="active" id="nav_women"> <!-- onclick="javascript:location='#women';" -->
+                <a href="#women"><span>WOMEN</span></a>
+                <div class="blue_border"></div>
+            </li>
+
+            <li id="nav_men"><a href="#men"><span>MEN</span></a></li>
+
+            <li id="nav_designers"><a href="#designers"><span>DESIGNERS</span></a></li>
+
+            <li id="nav_sales"><a href="#sales"><span>SALE</span></a></li>
+
+            <li id="nav_bestsellers"><a href="#bestsellers"><span>BESTSELLERS</span></a></li>
+
+            <li class="search">
+                <input type="text" placeholder="Search by brand..." /><span></span>
+            <?php //echo $this->getChildHtml('topSearch');  todo: need to fix ?>
+            </li>
+        </ul>
+    </div>
+</div>
+<?php echo $this->getChildHtml('topMenu') ?>
