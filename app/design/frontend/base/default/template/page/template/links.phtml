@@ -31,7 +31,7 @@
 ?>
 <?php $_links = $this->getLinks(); ?>
 <?php if(count($_links)>0): ?>
-<ul class="links"<?php if($this->getName()): ?> id="<?php echo $this->getName() ?>"<?php endif;?>>
+<!--ul class="links"<?php if($this->getName()): ?> id="<?php echo $this->getName() ?>"<?php endif;?>>
     <?php foreach($_links as $_link): ?>
         <?php if ($_link instanceof Mage_Core_Block_Abstract):?>
             <?php echo $_link->toHtml() ?>
@@ -39,5 +39,17 @@
             <li<?php if($_link->getIsFirst()||$_link->getIsLast()): ?> class="<?php if($_link->getIsFirst()): ?>first<?php endif; ?><?php if($_link->getIsLast()): ?> last<?php endif; ?>"<?php endif; ?> <?php echo $_link->getLiParams() ?>><?php echo $_link->getBeforeText() ?><a href="<?php echo $_link->getUrl() ?>" title="<?php echo $_link->getTitle() ?>" <?php echo $_link->getAParams() ?>><?php echo $_link->getLabel() ?></a><?php echo $_link->getAfterText() ?></li>
         <?php endif;?>
     <?php endforeach; ?>
-</ul>
+</ul-->
 <?php endif; ?>
+
+<div class="links">
+    <div class="my_account">
+        <img src="/ewc/skin/frontend/default/default/images/icon_my_account.png" alt="" /><a href="index.php/customer/account/login/">My Account</a>
+    </div>
+    <div class="shopping_bag">
+        <img src="/ewc/skin/frontend/default/default/images/icon_shopping_bag.png" alt="" /><a href="#">Shopping bag (1)</a>
+    </div>
+    <div class="shopping_list">
+        <img src="/ewc/skin/frontend/default/default/images/icon_shopping_list.png" alt="" /><a href="#">Shopping list</a>
+    </div>
+</div>

@@ -44,44 +44,10 @@
         <a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><strong><?php echo $this->getLogoAlt() ?></strong><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a>
         <?php endif?>
         <div class="quick-access">
-            <?php// echo $this->getChildHtml('topLinks') ?>
-            <div class="links">
-                <div class="my_account">
-                    <img src="/ewc/skin/frontend/default/default/images/icon_my_account.png" alt="" /><a href="index.php/customer/account/login/">My Account</a>
-                </div>
-                <div class="shopping_bag">
-                    <img src="/ewc/skin/frontend/default/default/images/icon_shopping_bag.png" alt="" /><a href="#">Shopping bag (1)</a>
-                </div>
-                <div class="shopping_list">
-                    <img src="/ewc/skin/frontend/default/default/images/icon_shopping_list.png" alt="" /><a href="#">Shopping list</a>
-                </div>
-            </div>
-
-            <?php echo $this->getChildHtml('store_language'); ?>
+            <?php echo $this->getChildHtml('topLinks') ?>
+            <?php //echo $this->getChildHtml('store_language'); ?>
         </div>
-        <?php echo $this->getChildHtml('topContainer'); ?>
+        <?php //echo $this->getChildHtml('topContainer'); ?>
     </div>
-
-    <div class="navigation">
-        <ul id="cnav">
-            <li class="active" id="nav_women"> <!-- onclick="javascript:location='#women';" -->
-                <a href="#women"><span>WOMEN</span></a>
-                <div class="blue_border"></div>
-            </li>
-
-            <li id="nav_men"><a href="#men"><span>MEN</span></a></li>
-
-            <li id="nav_designers"><a href="#designers"><span>DESIGNERS</span></a></li>
-
-            <li id="nav_sales"><a href="#sales"><span>SALE</span></a></li>
-
-            <li id="nav_bestsellers"><a href="#bestsellers"><span>BESTSELLERS</span></a></li>
-
-            <li class="search">
-                <input type="text" placeholder="Search by brand..." /><span></span>
-            <?php //echo $this->getChildHtml('topSearch');  todo: need to fix ?>
-            </li>
-        </ul>
-    </div>
+    <?php echo $this->getChildHtml('topMenu') ?>
 </div>
-<?php echo $this->getChildHtml('topMenu') ?>
