@@ -24,6 +24,55 @@
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#nav').localScroll(800);
+        //.parallax(xPosition, speedFactor, outerHeight) options:
+        //xPosition - Horizontal position of the element
+        //inertia - speed to move relative to vertical scroll. Example: 0.1 is one tenth the speed of scrolling, 2 is twice the speed of scrolling
+        //outerHeight (true/false) - Whether or not jQuery should use it's outerHeight option to determine when a section is in the viewport
+        $('#women').parallax("50%", 0.2);
+        $('#men').parallax("50%", 0.2);
+        $('#designers').parallax("50%", 0.2);
+        $('#sales').parallax("50%", 0.2);
+
+        $("div.brand_list").each(function () {
+            var tmp = $(this);
+            /*console.log($(tmp).find(" .lineTabs li"));*/
+            $(tmp).find(".lineTabs li").each(function (i) {
+                $(tmp).find(".lineTabs li:eq("+i+")").click(function(){
+                    var tab_id=i+1;
+                    $(tmp).find(".lineTabs li").removeClass("active_tab");
+                    $(this).addClass("active_tab");
+                    $(tmp).find(".content div").stop(false,false).hide();
+                    $(tmp).find(".tab"+tab_id).stop(false,false).show();
+                    return false;
+                });
+            });
+        });
+    })
+    window.onscroll = function() {
+        if (getBodyScrollTop() >= 0 && getBodyScrollTop() < 805) {
+            parallax.OnScroll($("#nav_women"));
+        } else if (getBodyScrollTop() >= 805  && getBodyScrollTop() < 1780) {
+            parallax.OnScroll($("#nav_men"));
+        } else if (getBodyScrollTop() >= 1780 && getBodyScrollTop() < 2756) {
+            parallax.OnScroll($("#nav_designers"));
+        } else if (getBodyScrollTop() >= 2756 && getBodyScrollTop() < 3726) {
+            parallax.OnScroll($("#nav_sales"));
+        } else if (getBodyScrollTop() >= 3726) {
+            parallax.OnScroll($("#nav_bestsellers"));
+        }
+    }
+    function getBodyScrollTop(){
+        return self.pageYOffset || (document.documentElement && document.documentElement.scrollTop) || (document.body && document.body.scrollTop);
+    }
+
+
+
+</script>
+
 <div id="women" class="women_content responsive_height">
     <div class="main_content shadow_layer">
         <div class="banner_wrapper">

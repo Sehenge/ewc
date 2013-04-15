@@ -49,6 +49,7 @@ Default layout, loads most of the pages
                 <action method="addJs"><script>mage/translate.js</script></action>
                 <action method="addJs"><script>mage/cookies.js</script></action>
                 <action method="addJs"><script>jquery-1.9.1.min.js</script></action>
+                <action method="addJs"><script>parallax.js</script></action>
                 <action method="addJs"><script>scripts.js</script></action>
                 <action method="addJs"><script>jquery.parallax-1.1.3.js</script></action>
                 <action method="addJs"><script>jquery.scrollTo-1.4.2-min.js</script></action>
