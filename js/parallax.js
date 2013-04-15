@@ -31,6 +31,7 @@ Parallax.prototype.OnScroll = function Parallax_onScroll(obj) {
 
 Parallax.prototype.ScrollTo = function Parallax_scrollTo(obj) {
     var self = this;
+
     var block = obj.find('a').attr("rel");
     var offset = 0;
     if (block == 'men') {
@@ -42,6 +43,7 @@ Parallax.prototype.ScrollTo = function Parallax_scrollTo(obj) {
     } else if (block == 'bestsellers') {
         offset = 3896;
     }
+
     $("body").animate({
         scrollTop: offset
     }, 800);
