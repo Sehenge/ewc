@@ -74,16 +74,17 @@
 
 <?php
     $category = new Mage_Catalog_Model_Category();
-    $category->load(5);
+    $category->load(1)->getUrl();
     $collection = $category->getProductCollection();
+print_r($category);
     foreach ($collection as $product) {
         $result[] = $product->getId();
     }
 
     foreach ($result as $_product_id){
         $_product = new Mage_Catalog_Model_Product();
-        $_product->load($_product_id);
-        print_r($_product);
+        $_product->load($_product_id)->getUrl();
+        //print_r($_product);
     }
 ?>
 <div id="women" class="women_content responsive_height">
