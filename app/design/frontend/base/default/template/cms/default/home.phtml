@@ -73,19 +73,33 @@
 </script>
 
 <?php
-    $category = new Mage_Catalog_Model_Category();
-    $category->load(1)->getUrl();
-    $collection = $category->getProductCollection();
-print_r($category);
-    foreach ($collection as $product) {
-        $result[] = $product->getId();
-    }
+$category = Mage::getModel('catalog/category');
+$tree = $category->getTreeModel();
+$tree->load();
 
-    foreach ($result as $_product_id){
-        $_product = new Mage_Catalog_Model_Product();
-        $_product->load($_product_id)->getUrl();
-        //print_r($_product);
+$ids = $tree->getCollection()->getAllIds();
+$arr = array();
+
+if ($ids){
+    foreach ($ids as $id){
+        $cat = Mage::getModel('catalog/category');
+        $cat->load($id);
+        array_push($arr, $cat);
     }
+}
+//print_r($arr);
+foreach ($arr as $obj) {
+    $data = $obj->getData();
+
+    if ($data['level'] == 4) {
+        print_r($data);
+        $designers[] = array('name' => $data['name'],
+                                                'url' => $data['url_path'],
+                                                'parent_id' => $data['parent_id']);
+    }
+}
+sort($designers);
+print_r($designers);
 ?>
 <div id="women" class="women_content responsive_height">
     <div class="main_content shadow_layer">
@@ -163,196 +177,40 @@ print_r($category);
 <div class="content">
 <div class="tab1">
     <ul>
-        <li><a href="#">ADIDAS</a></li>
-        <li><a href="#">AFFLICTION</a></li>
-        <li><a href="#">ALAIN MIKLI</a></li>
-        <li><a href="#">ANDY WOLF</a></li>
-        <li><a href="#">ARMANI EXCHANGE</a></li>
-        <li><a href="#">ARNETTE</a></li>
-        <li><a href="#">BALENCIAGA</a></li>
-        <li><a href="#">BEBE</a></li>
-        <li><a href="#">BLUMARINE</a></li>
-        <li><a href="#">BURBERRY</a></li>
-        <li><a href="#">BVLGARI</a></li>
-        <li><a href="#">CALVIN KLEIN</a></li>
-        <li><a href="#">CARRERA</a></li>
-        <li><a href="#">CAVIAR</a></li>
-        <li><a href="#">CAZAL</a></li>
-        <li><a href="#">CHANEL</a></li>
-        <li><a href="#">CHLOE</a></li>
-    </ul>
-    <ul>
-        <li><a href="#">CHOPARD</a></li>
-        <li><a href="#">CHRISTIAN AUDIGIER</a></li>
-        <li><a href="#">CHRISTIAN DIOR</a></li>
-        <li><a href="#">CHRISTIAN ROTH</a></li>
-        <li><a href="#">CHROME HEARTS</a></li>
-        <li><a href="#">COACH</a></li>
-        <li><a href="#">COSTA DEL MAR</a></li>
-        <li><a href="#">CYNTHIA ROWLEY</a></li>
-        <li><a href="#">D&G</a></li>
-        <li><a href="#">DIANE VON FURSTENBERG</a></li>
-        <li><a href="#">DIESEL</a></li>
-        <li><a href="#">DKNY</a></li>
-        <li><a href="#">DOLCE&GABBANA</a></li>
-        <li><a href="#">DSQUARED</a></li>
-        <li><a href="#">ED HARDY</a></li>
-        <li><a href="#">EMILIO PUCCI</a></li>
-        <li><a href="#">EMPORIO ARMANI</a></li>
-    </ul>
-    <ul>
-        <li><a href="#">ADIDAS</a></li>
-        <li><a href="#">AFFLICTION</a></li>
-        <li><a href="#">ALAIN MIKLI</a></li>
-        <li><a href="#">ANDY WOLF</a></li>
-        <li><a href="#">ARMANI EXCHANGE</a></li>
-        <li><a href="#">ARNETTE</a></li>
-        <li><a href="#">BALENCIAGA</a></li>
-        <li><a href="#">BEBE</a></li>
-        <li><a href="#">BLUMARINE</a></li>
-        <li><a href="#">BURBERRY</a></li>
-        <li><a href="#">BVLGARI</a></li>
-        <li><a href="#">CALVIN KLEIN</a></li>
-        <li><a href="#">CARRERA</a></li>
-        <li><a href="#">CAVIAR</a></li>
-        <li><a href="#">CAZAL</a></li>
-        <li><a href="#">CHANEL</a></li>
-        <li><a href="#">CHLOE</a></li>
-    </ul>
-    <ul>
-        <li><a href="#">CHOPARD</a></li>
-        <li><a href="#">CHRISTIAN AUDIGIER</a></li>
-        <li><a href="#">CHRISTIAN DIOR</a></li>
-        <li><a href="#">CHRISTIAN ROTH</a></li>
-        <li><a href="#">CHROME HEARTS</a></li>
-        <li><a href="#">COACH</a></li>
-        <li><a href="#">COSTA DEL MAR</a></li>
-        <li><a href="#">CYNTHIA ROWLEY</a></li>
-        <li><a href="#">D&G</a></li>
-        <li><a href="#">DIANE VON FURSTENBERG</a></li>
-        <li><a href="#">DIESEL</a></li>
-        <li><a href="#">DKNY</a></li>
-        <li><a href="#">DOLCE&GABBANA</a></li>
-        <li><a href="#">DSQUARED</a></li>
-        <li><a href="#">ED HARDY</a></li>
-        <li><a href="#">EMILIO PUCCI</a></li>
-        <li><a href="#">EMPORIO ARMANI</a></li>
-    </ul>
-    <ul>
-        <li><a href="#">CHOPARD</a></li>
-        <li><a href="#">CHRISTIAN AUDIGIER</a></li>
-        <li><a href="#">CHRISTIAN DIOR</a></li>
-        <li><a href="#">CHRISTIAN ROTH</a></li>
-        <li><a href="#">CHROME HEARTS</a></li>
-        <li><a href="#">COACH</a></li>
-        <li><a href="#">COSTA DEL MAR</a></li>
-        <li><a href="#">CYNTHIA ROWLEY</a></li>
-        <li><a href="#">D&G</a></li>
-        <li><a href="#">DIANE VON FURSTENBERG</a></li>
-        <li><a href="#">DIESEL</a></li>
-        <li><a href="#">DKNY</a></li>
-        <li><a href="#">DOLCE&GABBANA</a></li>
-        <li><a href="#">DSQUARED</a></li>
-        <li><a href="#">ED HARDY</a></li>
-        <li><a href="#">EMILIO PUCCI</a></li>
-        <li><a href="#">EMPORIO ARMANI</a></li>
+    <?php
+        $i = 0;
+        foreach ($designers as $key => $brand) {
+            if ($i < 17) {
+                if (($brand['parent_id'] == 3) || ($brand['parent_id'] == 9)) {
+                    echo '<li><a href="', $brand['url'], '">', strtoupper($brand['name']), '</a></li>';
+                }
+            } else {
+                echo '</ul><ul>', '<li><a href="', $brand['url'], '">', strtoupper($brand['name']), '</a></li>';
+                $i = 0;
+            }
+            $i++;
+        }
+
+    ?>
     </ul>
 </div>
 <div class="tab2" style="display: none;">
     <ul>
-        <li><a href="#">ADIDAS</a></li>
-        <li><a href="#">AFFLICTION</a></li>
-        <li><a href="#">ALAIN MIKLI</a></li>
-        <li><a href="#">ANDY WOLF</a></li>
-        <li><a href="#">ARMANI EXCHANGE</a></li>
-        <li><a href="#">ARNETTE</a></li>
-        <li><a href="#">BALENCIAGA</a></li>
-        <li><a href="#">BEBE</a></li>
-        <li><a href="#">BLUMARINE</a></li>
-        <li><a href="#">BURBERRY</a></li>
-        <li><a href="#">BVLGARI</a></li>
-        <li><a href="#">CALVIN KLEIN</a></li>
-        <li><a href="#">CARRERA</a></li>
-        <li><a href="#">CAVIAR</a></li>
-        <li><a href="#">CAZAL</a></li>
-        <li><a href="#">CHANEL</a></li>
-        <li><a href="#">CHLOE</a></li>
-    </ul>
-    <ul>
-        <li><a href="#">CHOPARD</a></li>
-        <li><a href="#">CHRISTIAN AUDIGIER</a></li>
-        <li><a href="#">CHRISTIAN DIOR</a></li>
-        <li><a href="#">CHRISTIAN ROTH</a></li>
-        <li><a href="#">CHROME HEARTS</a></li>
-        <li><a href="#">COACH</a></li>
-        <li><a href="#">COSTA DEL MAR</a></li>
-        <li><a href="#">CYNTHIA ROWLEY</a></li>
-        <li><a href="#">D&G</a></li>
-        <li><a href="#">DIANE VON FURSTENBERG</a></li>
-        <li><a href="#">DIESEL</a></li>
-        <li><a href="#">DKNY</a></li>
-        <li><a href="#">DOLCE&GABBANA</a></li>
-        <li><a href="#">DSQUARED</a></li>
-        <li><a href="#">ED HARDY</a></li>
-        <li><a href="#">EMILIO PUCCI</a></li>
-        <li><a href="#">EMPORIO ARMANI</a></li>
-    </ul>
-    <ul>
-        <li><a href="#">ADIDAS</a></li>
-        <li><a href="#">AFFLICTION</a></li>
-        <li><a href="#">ALAIN MIKLI</a></li>
-        <li><a href="#">ANDY WOLF</a></li>
-        <li><a href="#">ARMANI EXCHANGE</a></li>
-        <li><a href="#">ARNETTE</a></li>
-        <li><a href="#">BALENCIAGA</a></li>
-        <li><a href="#">BEBE</a></li>
-        <li><a href="#">BLUMARINE</a></li>
-        <li><a href="#">BURBERRY</a></li>
-        <li><a href="#">BVLGARI</a></li>
-        <li><a href="#">CALVIN KLEIN</a></li>
-        <li><a href="#">CARRERA</a></li>
-        <li><a href="#">CAVIAR</a></li>
-        <li><a href="#">CAZAL</a></li>
-        <li><a href="#">CHANEL</a></li>
-        <li><a href="#">CHLOE</a></li>
-    </ul>
-    <ul>
-        <li><a href="#">CHOPARD</a></li>
-        <li><a href="#">CHRISTIAN AUDIGIER</a></li>
-        <li><a href="#">CHRISTIAN DIOR</a></li>
-        <li><a href="#">CHRISTIAN ROTH</a></li>
-        <li><a href="#">CHROME HEARTS</a></li>
-        <li><a href="#">COACH</a></li>
-        <li><a href="#">COSTA DEL MAR</a></li>
-        <li><a href="#">CYNTHIA ROWLEY</a></li>
-        <li><a href="#">D&G</a></li>
-        <li><a href="#">DIANE VON FURSTENBERG</a></li>
-        <li><a href="#">DIESEL</a></li>
-        <li><a href="#">DKNY</a></li>
-        <li><a href="#">DOLCE&GABBANA</a></li>
-        <li><a href="#">DSQUARED</a></li>
-        <li><a href="#">ED HARDY</a></li>
-        <li><a href="#">EMILIO PUCCI</a></li>
-        <li><a href="#">EMPORIO ARMANI</a></li>
-    </ul>
-    <ul>
-        <li><a href="#">CHOPARD</a></li>
-        <li><a href="#">CHRISTIAN AUDIGIER</a></li>
-        <li><a href="#">CHRISTIAN DIOR</a></li>
-        <li><a href="#">CHRISTIAN ROTH</a></li>
-        <li><a href="#">CHROME HEARTS</a></li>
-        <li><a href="#">COACH</a></li>
-        <li><a href="#">COSTA DEL MAR</a></li>
-        <li><a href="#">CYNTHIA ROWLEY</a></li>
-        <li><a href="#">D&G</a></li>
-        <li><a href="#">DIANE VON FURSTENBERG</a></li>
-        <li><a href="#">DIESEL</a></li>
-        <li><a href="#">DKNY</a></li>
-        <li><a href="#">DOLCE&GABBANA</a></li>
-        <li><a href="#">DSQUARED</a></li>
-        <li><a href="#">ED HARDY</a></li>
-        <li><a href="#">EMILIO PUCCI</a></li>
-        <li><a href="#">EMPORIO ARMANI</a></li>
+        <?php
+        $i = 0;
+        foreach ($designers as $brand) {
+            if ($i < 17) {
+                if (($brand['parent_id'] == 4) || ($brand['parent_id'] == 13)) {
+                    echo '<li><a href="', $brand['url'], '">', strtoupper($brand['name']), '</a></li>';
+                }
+            } else {
+                echo '</ul><ul>', '<li><a href="', $brand['url'], '">', strtoupper($brand['name']), '</a></li>';
+                $i = 0;
+            }
+            $i++;
+        }
+
+        ?>
     </ul>
 </div>
 <div class="tab3" style="display: none;">
