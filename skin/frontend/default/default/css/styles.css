@@ -2109,14 +2109,16 @@ tr.summary-details-excluded { font-style:italic; }
     /*background-image: url(../images/icon_shopping_list.png);
     background-repeat: no-repeat;    */
 }
-.sun button, .eye button {
+.sun a, .eye a {
     background-color:#000000;
     border:1px solid #a7d3df;
     display:inline-block;
     color:#a7d3df;
     width: 124px;
-    height: 24px;
+    height: 20px;
     text-decoration:none;
+    padding: 3px 0 0 0;
+    cursor: pointer;
 }
 .sun button:hover, .eye button:hover {
     background-color:#000000;
