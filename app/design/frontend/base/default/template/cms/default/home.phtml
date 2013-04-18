@@ -67,9 +67,6 @@
     function getBodyScrollTop(){
         return self.pageYOffset || (document.documentElement && document.documentElement.scrollTop) || (document.body && document.body.scrollTop);
     }
-
-
-
 </script>
 
 <?php
@@ -92,14 +89,14 @@ foreach ($arr as $obj) {
     $data = $obj->getData();
 
     if ($data['level'] == 4) {
-        print_r($data);
+        //print_r($data);
         $designers[] = array('name' => $data['name'],
                                                 'url' => $data['url_path'],
                                                 'parent_id' => $data['parent_id']);
     }
 }
 sort($designers);
-print_r($designers);
+//print_r($designers);
 ?>
 <div id="women" class="women_content responsive_height">
     <div class="main_content shadow_layer">
@@ -140,7 +137,7 @@ print_r($designers);
             <div class="sun">
                 <div class="label">
                     <span>SUNGLASSES</span><br>
-                    <a href="men/eyeglasses/">SHOP</a>
+                    <a href="men/sunglasses/">SHOP</a>
                 </div>
             </div>
             <div class="eye">
