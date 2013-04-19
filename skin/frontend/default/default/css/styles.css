@@ -2296,3 +2296,14 @@ tr.summary-details-excluded { font-style:italic; }
     color: #6dcff6;
     text-decoration: underline;
 }
+.notfound {
+    margin: 166px 0 0 0;
+    height: 1000px;
+    background: url(../images/404_bg.png) 0 0 no-repeat;
+}
+.notfound .nftext {
+    width: 455px;
+    position: relative;
+    top: 435px;
+    left: 636px;
+}
