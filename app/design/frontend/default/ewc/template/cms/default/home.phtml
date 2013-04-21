@@ -1,0 +1,541 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        //.parallax(xPosition, speedFactor, outerHeight) options:
+        //xPosition - Horizontal position of the element
+        //inertia - speed to move relative to vertical scroll. Example: 0.1 is one tenth the speed of scrolling, 2 is twice the speed of scrolling
+        //outerHeight (true/false) - Whether or not jQuery should use it's outerHeight option to determine when a section is in the viewport
+        $('#women').parallax("50%", 0.2);
+        $('#men').parallax("50%", 0.2);
+        $('#designers').parallax("50%", 0.2);
+        $('#sales').parallax("50%", 0.2);
+
+        $("div.brand_list").each(function () {
+            var tmp = $(this);
+            /*console.log($(tmp).find(" .lineTabs li"));*/
+            $(tmp).find(".lineTabs li").each(function (i) {
+                $(tmp).find(".lineTabs li:eq("+i+")").click(function(){
+                    var tab_id=i+1;
+                    $(tmp).find(".lineTabs li").removeClass("active_tab");
+                    $(this).addClass("active_tab");
+                    $(tmp).find(".content div").stop(false,false).hide();
+                    $(tmp).find(".tab"+tab_id).stop(false,false).show();
+                    return false;
+                });
+            });
+        });
+    })
+    window.onscroll = function() {
+        if (getBodyScrollTop() >= 0 && getBodyScrollTop() < 805) {
+            parallax.OnScroll($("#nav_women"));
+        } else if (getBodyScrollTop() >= 805  && getBodyScrollTop() < 1780) {
+            parallax.OnScroll($("#nav_men"));
+        } else if (getBodyScrollTop() >= 1780 && getBodyScrollTop() < 2756) {
+            parallax.OnScroll($("#nav_designers"));
+        } else if (getBodyScrollTop() >= 2756 && getBodyScrollTop() < 3726) {
+            parallax.OnScroll($("#nav_sales"));
+        } else if (getBodyScrollTop() >= 3726) {
+            parallax.OnScroll($("#nav_bestsellers"));
+        }
+    }
+    function getBodyScrollTop(){
+        return self.pageYOffset || (document.documentElement && document.documentElement.scrollTop) || (document.body && document.body.scrollTop);
+    }
+
+
+
+</script>
+
+<?php
+$category = Mage::getModel('catalog/category');
+$tree = $category->getTreeModel();
+$tree->load();
+
+$ids = $tree->getCollection()->getAllIds();
+$arr = array();
+
+if ($ids){
+    foreach ($ids as $id){
+        $cat = Mage::getModel('catalog/category');
+        $cat->load($id);
+        array_push($arr, $cat);
+    }
+}
+//print_r($arr);
+foreach ($arr as $obj) {
+    $data = $obj->getData();
+
+    if ($data['level'] == 4) {
+        print_r($data);
+        $designers[] = array('name' => $data['name'],
+                                                'url' => $data['url_path'],
+                                                'parent_id' => $data['parent_id']);
+    }
+}
+sort($designers);
+print_r($designers);
+?>
+<div id="women" class="women_content responsive_height">
+    <div class="main_content shadow_layer">
+        <div class="banner_wrapper">
+            <a><img src="skin/frontend/default/default/images/ban-women.png" alt="" /></a>
+        </div>
+        <div class="women_glasses">
+            <div class="sun">
+                <div class="label">
+                    <span>SUNGLASSES</span><br>
+                    <a href="women/sunglasses/">SHOP</a>
+                </div>
+            </div>
+            <div class="eye">
+                <div class="label">
+                    <span>EYEGLASSES</span><br>
+                    <a href="women/eyeglasses/">SHOP</a>
+                </div>
+            </div>
+            <div class="pagination">
+                <a href="#" class="blue_link"><img src="skin/frontend/default/default/images/blue_link.png" alt="" /></a>
+                <a href="#" class="black_link"><img src="skin/frontend/default/default/images/black_link.png" alt="" /></a>
+            </div>
+            <div class="arrow_right">
+                <a href="#"><img src="skin/frontend/default/default/images/arrow_right.png" /></a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="men" class="men_content">
+    <div class="main_content shadow_layer">
+        <div class="banner_wrapper">
+            <a><img src="skin/frontend/default/default/images/ban-men.png" alt="" /></a>
+        </div>
+        <div class="men_glasses">
+            <div class="sun">
+                <div class="label">
+                    <span>SUNGLASSES</span><br>
+                    <a href="men/eyeglasses/">SHOP</a>
+                </div>
+            </div>
+            <div class="eye">
+                <div class="label">
+                    <span>EYEGLASSES</span><br>
+                    <a href="men/eyeglasses/">SHOP</a>
+                </div>
+            </div>
+            <div class="pagination">
+                <a href="#" class="black_link"><img src="skin/frontend/default/default/images/black_link.png" alt="" /></a>
+                <a href="#" class="blue_link"><img src="skin/frontend/default/default/images/blue_link.png" alt="" /></a>
+            </div>
+            <div class="arrow_left">
+                <a href="#"><img src="skin/frontend/default/default/images/arrow_left.png" /></a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="designers" class="designers_content">
+<div class="main_content">
+<div class="top_brands">
+    <div class="top_brands_title">TOP BRANDS</div>
+    <div class="top_brands_ratator"><img src="skin/frontend/default/default/images/brands_rotator.png" alt="" /></div>
+</div>
+
+<div class="brand_list">
+<ul class="lineTabs">
+    <li class="active_tab">SUNGLASSES</li>
+    <li>EYEGLASSES</li>
+    <li>WATCHES</li>
+</ul>
+<div class="content">
+<div class="tab1">
+    <ul>
+    <?php
+        $i = 0;
+        foreach ($designers as $key => $brand) {
+            if ($i < 17) {
+                if (($brand['parent_id'] == 3) || ($brand['parent_id'] == 9)) {
+                    echo '<li><a href="', $brand['url'], '">', strtoupper($brand['name']), '</a></li>';
+                }
+            } else {
+                echo '</ul><ul>', '<li><a href="', $brand['url'], '">', strtoupper($brand['name']), '</a></li>';
+                $i = 0;
+            }
+            $i++;
+        }
+
+    ?>
+    </ul>
+</div>
+<div class="tab2" style="display: none;">
+    <ul>
+        <?php
+        $i = 0;
+        foreach ($designers as $brand) {
+            if ($i < 17) {
+                if (($brand['parent_id'] == 4) || ($brand['parent_id'] == 13)) {
+                    echo '<li><a href="', $brand['url'], '">', strtoupper($brand['name']), '</a></li>';
+                }
+            } else {
+                echo '</ul><ul>', '<li><a href="', $brand['url'], '">', strtoupper($brand['name']), '</a></li>';
+                $i = 0;
+            }
+            $i++;
+        }
+
+        ?>
+    </ul>
+</div>
+<div class="tab3" style="display: none;">
+    <ul>
+        <li><a href="#">ADIDAS</a></li>
+        <li><a href="#">AFFLICTION</a></li>
+        <li><a href="#">ALAIN MIKLI</a></li>
+        <li><a href="#">ANDY WOLF</a></li>
+        <li><a href="#">ARMANI EXCHANGE</a></li>
+        <li><a href="#">ARNETTE</a></li>
+        <li><a href="#">BALENCIAGA</a></li>
+        <li><a href="#">BEBE</a></li>
+        <li><a href="#">BLUMARINE</a></li>
+        <li><a href="#">BURBERRY</a></li>
+        <li><a href="#">BVLGARI</a></li>
+        <li><a href="#">CALVIN KLEIN</a></li>
+        <li><a href="#">CARRERA</a></li>
+        <li><a href="#">CAVIAR</a></li>
+        <li><a href="#">CAZAL</a></li>
+        <li><a href="#">CHANEL</a></li>
+        <li><a href="#">CHLOE</a></li>
+    </ul>
+    <ul>
+        <li><a href="#">CHOPARD</a></li>
+        <li><a href="#">CHRISTIAN AUDIGIER</a></li>
+        <li><a href="#">CHRISTIAN DIOR</a></li>
+        <li><a href="#">CHRISTIAN ROTH</a></li>
+        <li><a href="#">CHROME HEARTS</a></li>
+        <li><a href="#">COACH</a></li>
+        <li><a href="#">COSTA DEL MAR</a></li>
+        <li><a href="#">CYNTHIA ROWLEY</a></li>
+        <li><a href="#">D&G</a></li>
+        <li><a href="#">DIANE VON FURSTENBERG</a></li>
+        <li><a href="#">DIESEL</a></li>
+        <li><a href="#">DKNY</a></li>
+        <li><a href="#">DOLCE&GABBANA</a></li>
+        <li><a href="#">DSQUARED</a></li>
+        <li><a href="#">ED HARDY</a></li>
+        <li><a href="#">EMILIO PUCCI</a></li>
+        <li><a href="#">EMPORIO ARMANI</a></li>
+    </ul>
+    <ul>
+        <li><a href="#">ADIDAS</a></li>
+        <li><a href="#">AFFLICTION</a></li>
+        <li><a href="#">ALAIN MIKLI</a></li>
+        <li><a href="#">ANDY WOLF</a></li>
+        <li><a href="#">ARMANI EXCHANGE</a></li>
+        <li><a href="#">ARNETTE</a></li>
+        <li><a href="#">BALENCIAGA</a></li>
+        <li><a href="#">BEBE</a></li>
+        <li><a href="#">BLUMARINE</a></li>
+        <li><a href="#">BURBERRY</a></li>
+        <li><a href="#">BVLGARI</a></li>
+        <li><a href="#">CALVIN KLEIN</a></li>
+        <li><a href="#">CARRERA</a></li>
+        <li><a href="#">CAVIAR</a></li>
+        <li><a href="#">CAZAL</a></li>
+        <li><a href="#">CHANEL</a></li>
+        <li><a href="#">CHLOE</a></li>
+    </ul>
+    <ul>
+        <li><a href="#">CHOPARD</a></li>
+        <li><a href="#">CHRISTIAN AUDIGIER</a></li>
+        <li><a href="#">CHRISTIAN DIOR</a></li>
+        <li><a href="#">CHRISTIAN ROTH</a></li>
+        <li><a href="#">CHROME HEARTS</a></li>
+        <li><a href="#">COACH</a></li>
+        <li><a href="#">COSTA DEL MAR</a></li>
+        <li><a href="#">CYNTHIA ROWLEY</a></li>
+        <li><a href="#">D&G</a></li>
+        <li><a href="#">DIANE VON FURSTENBERG</a></li>
+        <li><a href="#">DIESEL</a></li>
+        <li><a href="#">DKNY</a></li>
+        <li><a href="#">DOLCE&GABBANA</a></li>
+        <li><a href="#">DSQUARED</a></li>
+        <li><a href="#">ED HARDY</a></li>
+        <li><a href="#">EMILIO PUCCI</a></li>
+        <li><a href="#">EMPORIO ARMANI</a></li>
+    </ul>
+    <ul>
+        <li><a href="#">CHOPARD</a></li>
+        <li><a href="#">CHRISTIAN AUDIGIER</a></li>
+        <li><a href="#">CHRISTIAN DIOR</a></li>
+        <li><a href="#">CHRISTIAN ROTH</a></li>
+        <li><a href="#">CHROME HEARTS</a></li>
+        <li><a href="#">COACH</a></li>
+        <li><a href="#">COSTA DEL MAR</a></li>
+        <li><a href="#">CYNTHIA ROWLEY</a></li>
+        <li><a href="#">D&G</a></li>
+        <li><a href="#">DIANE VON FURSTENBERG</a></li>
+        <li><a href="#">DIESEL</a></li>
+        <li><a href="#">DKNY</a></li>
+        <li><a href="#">DOLCE&GABBANA</a></li>
+        <li><a href="#">DSQUARED</a></li>
+        <li><a href="#">ED HARDY</a></li>
+        <li><a href="#">EMILIO PUCCI</a></li>
+        <li><a href="#">EMPORIO ARMANI</a></li>
+    </ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<script type="text/javascript" src="js/jquery.totemticker.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $('#sales_rotator').totemticker({
+            row_height  :    '79px',
+            next        :    '#sales_next',
+            previous    :    '#sales_previous',
+        });
+        setInterval('showDetails()', 500);
+    });
+    function showDetails() {
+        $("#sales_rotator li").each(function () {
+            position = $(this).position();
+            if (position.top == 274) {
+                $('.rotator_detail').hide();
+                item_id = $(this).attr('rel');
+                $('#'+item_id).show();
+            }
+        });
+    }
+</script>
+
+<div id="sales" class="sales_content">
+    <div class="rotator_wrapper">
+        <a href="#" id="sales_previous"><img src="skin/frontend/default/default/images/transparent_arrow.png" alt="" /></a>
+        <ul id="sales_rotator">
+            <li rel="item1"><img src="skin/frontend/default/default/images/rotator_item1.png" alt="" /></li>
+            <li rel="item2"><img src="skin/frontend/default/default/images/rotator_item2.png" alt="" /></li>
+            <li rel="item3"><img src="skin/frontend/default/default/images/rotator_item3.png" alt="" /></li>
+            <li rel="item4"><img src="skin/frontend/default/default/images/rotator_item4.png" alt="" /></li>
+            <li rel="item5"><img src="skin/frontend/default/default/images/rotator_item5.png" alt="" /></li>
+            <li rel="item6"><img src="skin/frontend/default/default/images/rotator_item6.png" alt="" /></li>
+            <li rel="item7"><img src="skin/frontend/default/default/images/rotator_item7.png" alt="" /></li>
+            <li rel="item1"><img src="skin/frontend/default/default/images/rotator_item1.png" alt="" /></li>
+            <li rel="item2"><img src="skin/frontend/default/default/images/rotator_item2.png" alt="" /></li>
+            <li rel="item3"><img src="skin/frontend/default/default/images/rotator_item3.png" alt="" /></li>
+            <li rel="item4"><img src="skin/frontend/default/default/images/rotator_item4.png" alt="" /></li>
+            <li rel="item5"><img src="skin/frontend/default/default/images/rotator_item5.png" alt="" /></li>
+            <li rel="item6"><img src="skin/frontend/default/default/images/rotator_item6.png" alt="" /></li>
+            <li rel="item7"><img src="skin/frontend/default/default/images/rotator_item7.png" alt="" /></li>
+        </ul>
+        <a href="#" id="sales_next"><img src="skin/frontend/default/default/images/transparent_arrow.png" alt="" /></a>
+    </div>
+
+    <div class="rotator_detail_wrapper">
+        <div class="rotator_detail" id="item1" style="display:none">
+            <div class="go_product_page"><a href="#">Go to page product</a></div>
+            <div class="description">
+                <div class="text">
+                    <h2>MYKITA1</h2>
+                    <p>Model: MY TAULANT</p>
+                    <p>Color Code: 51</p>
+                    <p>Frame Color : SILVER and CLEAR</p>
+                    <p>Lens Color: DEMO CLEAR</p>
+                    <p>Size: 49/19/135</p>
+                </div>
+                <div class="images">
+                    <img src="skin/frontend/default/default/images/rotator_item4-1.png" alt="" />
+                    <img src="skin/frontend/default/default/images/rotator_item4-2.png" alt="" />
+                </div>
+            </div>
+            <div class="price">
+                <div class="retail">Retail Price: $428.00</div>
+                <div class="our">Our Price: $405</div>
+            </div>
+        </div>
+        <div class="rotator_detail" id="item2" style="display:none">
+            <div class="go_product_page"><a href="#">Go to page product</a></div>
+            <div class="description">
+                <div class="text">
+                    <h2>MYKITA2</h2>
+                    <p>Model: MY TAULANT</p>
+                    <p>Color Code: 51</p>
+                    <p>Frame Color : SILVER and CLEAR</p>
+                    <p>Lens Color: DEMO CLEAR</p>
+                    <p>Size: 49/19/135</p>
+                </div>
+                <div class="images">
+                    <img src="skin/frontend/default/default/images/rotator_item4-1.png" alt="" />
+                    <img src="skin/frontend/default/default/images/rotator_item4-2.png" alt="" />
+                </div>
+            </div>
+            <div class="price">
+                <div class="retail">Retail Price: $428.00</div>
+                <div class="our">Our Price: $405</div>
+            </div>
+        </div>
+        <div class="rotator_detail" id="item3" style="display:none">
+            <div class="go_product_page"><a href="#">Go to page product</a></div>
+            <div class="description">
+                <div class="text">
+                    <h2>MYKITA3</h2>
+                    <p>Model: MY TAULANT</p>
+                    <p>Color Code: 51</p>
+                    <p>Frame Color : SILVER and CLEAR</p>
+                    <p>Lens Color: DEMO CLEAR</p>
+                    <p>Size: 49/19/135</p>
+                </div>
+                <div class="images">
+                    <img src="skin/frontend/default/default/images/rotator_item4-1.png" alt="" />
+                    <img src="skin/frontend/default/default/images/rotator_item4-2.png" alt="" />
+                </div>
+            </div>
+            <div class="price">
+                <div class="retail">Retail Price: $428.00</div>
+                <div class="our">Our Price: $405</div>
+            </div>
+        </div>
+        <div class="rotator_detail" id="item4" style="display:none">
+            <div class="go_product_page"><a href="#">Go to page product</a></div>
+            <div class="description">
+                <div class="text">
+                    <h2>MYKITA4</h2>
+                    <p>Model: MY TAULANT</p>
+                    <p>Color Code: 51</p>
+                    <p>Frame Color : SILVER and CLEAR</p>
+                    <p>Lens Color: DEMO CLEAR</p>
+                    <p>Size: 49/19/135</p>
+                </div>
+                <div class="images">
+                    <img src="skin/frontend/default/default/images/rotator_item4-1.png" alt="" />
+                    <img src="skin/frontend/default/default/images/rotator_item4-2.png" alt="" />
+                </div>
+            </div>
+            <div class="price">
+                <div class="retail">Retail Price: $428.00</div>
+                <div class="our">Our Price: $405</div>
+            </div>
+        </div>
+        <div class="rotator_detail" id="item5" style="display:none">
+            <div class="go_product_page"><a href="#">Go to page product</a></div>
+            <div class="description">
+                <div class="text">
+                    <h2>MYKITA5</h2>
+                    <p>Model: MY TAULANT</p>
+                    <p>Color Code: 51</p>
+                    <p>Frame Color : SILVER and CLEAR</p>
+                    <p>Lens Color: DEMO CLEAR</p>
+                    <p>Size: 49/19/135</p>
+                </div>
+                <div class="images">
+                    <img src="skin/frontend/default/default/images/rotator_item4-1.png" alt="" />
+                    <img src="skin/frontend/default/default/images/rotator_item4-2.png" alt="" />
+                </div>
+            </div>
+            <div class="price">
+                <div class="retail">Retail Price: $428.00</div>
+                <div class="our">Our Price: $405</div>
+            </div>
+        </div>
+        <div class="rotator_detail" id="item6" style="display:none">
+            <div class="go_product_page"><a href="#">Go to page product</a></div>
+            <div class="description">
+                <div class="text">
+                    <h2>MYKITA6</h2>
+                    <p>Model: MY TAULANT</p>
+                    <p>Color Code: 51</p>
+                    <p>Frame Color : SILVER and CLEAR</p>
+                    <p>Lens Color: DEMO CLEAR</p>
+                    <p>Size: 49/19/135</p>
+                </div>
+                <div class="images">
+                    <img src="skin/frontend/default/default/images/rotator_item4-1.png" alt="" />
+                    <img src="skin/frontend/default/default/images/rotator_item4-2.png" alt="" />
+                </div>
+            </div>
+            <div class="price">
+                <div class="retail">Retail Price: $428.00</div>
+                <div class="our">Our Price: $405</div>
+            </div>
+        </div>
+        <div class="rotator_detail" id="item7" style="display:none">
+            <div class="go_product_page"><a href="#">Go to page product</a></div>
+            <div class="description">
+                <div class="text">
+                    <h2>MYKITA7</h2>
+                    <p>Model: MY TAULANT</p>
+                    <p>Color Code: 51</p>
+                    <p>Frame Color : SILVER and CLEAR</p>
+                    <p>Lens Color: DEMO CLEAR</p>
+                    <p>Size: 49/19/135</p>
+                </div>
+                <div class="images">
+                    <img src="skin/frontend/default/default/images/rotator_item4-1.png" alt="" />
+                    <img src="skin/frontend/default/default/images/rotator_item4-2.png" alt="" />
+                </div>
+            </div>
+            <div class="price">
+                <div class="retail">Retail Price: $428.00</div>
+                <div class="our">Our Price: $405</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="bestsellers" class="bestsellers_content">
+    <div class="bestsellers">
+
+        <div class="excerpt_wrapper">
+            <div class="excerpt1">
+                A bestseller is a book that is identified as extremely popular by its inclusion on lists of currently top selling or frequently borrowed titles that are based on publishing industry and book trade figures and library circulation statistics and then published by newspapers, magazines, or bookstore chains. Some lists are broken down into classifications and specialities (number one best selling new cookbook, novel, nonfiction, etc.).
+            </div>
+            <div class="excerpt2">
+                A bestseller is a book that is identified as extremely popular by its inclusion on lists of currently top selling or frequently borrowed titles that are based on publishing industry and book trade figures and library circulation statistics and then published by newspapers, magazines, or bookstore chains. Some lists are broken down into classifications and specialities (number one best selling new cookbook, novel, nonfiction, etc.).
+            </div>
+        </div>
+
+        <div class="banners_wrapper">
+            <div class="banner banner1"><img src="skin/frontend/default/default/images/banner1.png" alt="" /></div>
+            <div class="banner banner2"><img src="skin/frontend/default/default/images/banner2.png" alt="" /></div>
+            <div class="banner banner3"><img src="skin/frontend/default/default/images/banner3.png" alt="" /></div>
+            <div class="banner banner4"><img src="skin/frontend/default/default/images/banner4.png" alt="" /></div>
+        </div>
+
+        <div class="just_sold_wrapper">
+            <div class="lust_sold_label">Just Sold:</div>
+            <div class="just_sold_item_wrapper">
+                <div class="title">RAY-BAN SUNGLASSES RB 8310 004/82</div>
+                <div class="image"><img src="skin/frontend/default/default/images/just_sold_item.png" alt="" /></div>
+                <div class="title">More colors available</div>
+            </div>
+        </div>
+
+    </div>

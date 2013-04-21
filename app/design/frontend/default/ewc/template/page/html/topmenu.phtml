@@ -1,0 +1,51 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+/**
+ * Top menu for store
+ *
+ * @see Mage_Page_Block_Html_Topmenu
+ */
+?>
+<?php //$_menu = $this->getHtml('level-top') ?>
+
+<div class="navigation">
+    <ul id="cnav">
+        <li class="active" id="nav_women"> <!-- onclick="javascript:location='#women';" -->
+            <a rel="women"><span>WOMEN</span></a>
+            <div class="blue_border"></div>
+        </li>
+        <li id="nav_men"><a rel="men"><span>MEN</span></a></li>
+        <li id="nav_designers"><a rel="designers"><span>DESIGNERS</span></a></li>
+        <li id="nav_sales"><a rel="sales"><span>SALE</span></a></li>
+        <li id="nav_bestsellers"><a rel="bestsellers"><span>BESTSELLERS</span></a></li>
+        <li class="search">
+            <input type="text" placeholder="Search by brand..." /><span></span>
+            <?php //echo $this->getChildHtml('topSearch');  todo: need to fix ?>
+        </li>
+    </ul>
+</div>
