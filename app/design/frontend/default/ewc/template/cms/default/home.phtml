@@ -92,14 +92,14 @@ foreach ($arr as $obj) {
     $data = $obj->getData();
 
     if ($data['level'] == 4) {
-        print_r($data);
+        //print_r($data);
         $designers[] = array('name' => $data['name'],
                                                 'url' => $data['url_path'],
                                                 'parent_id' => $data['parent_id']);
     }
 }
-sort($designers);
-print_r($designers);
+//sort($designers);
+//print_r($designers);
 ?>
 <div id="women" class="women_content responsive_height">
     <div class="main_content shadow_layer">

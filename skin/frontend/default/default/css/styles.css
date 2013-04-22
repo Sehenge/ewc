@@ -793,7 +793,7 @@ tr.summary-details-excluded { font-style:italic; }
 .category-image { width:100%; overflow:hidden; margin:0 0 10px; text-align:center; }
 .category-image img {}
 .category-description { margin:0 0 10px; }
-.category-products {background: url(../images/catalog_bg.png) 0 0 no-repeat; margin: 166px 0 0 0; padding: 600px 0 150px 0;}
+.category-products {background: url(../images/catalog_bg.png) 0 0 no-repeat; margin: 166px 0 0 0; padding: 600px 0 30px 0;}
 
 /* View Type: Grid */
 .products-grid { position:relative; }
@@ -1479,7 +1479,7 @@ tr.summary-details-excluded { font-style:italic; }
 
 
 /* Account Login/Create Pages ============================================================ */
-.account-login {margin: 170px 0 0 0; background: url(../images/login_bg.png) 0 0 no-repeat; min-height: 1150px;}
+.account-login {margin: 166px 0 0 0; background: url(../images/login_bg.png) 0 0 no-repeat; min-height: 1150px;}
 .account-login .content { height:100%; padding: 34px 21px 40px 20px; background:#fff;overflow: hidden;}
 .account-login .content h2 { font-weight:bold; font-size:13px; margin:0 0 14px; padding:0 0 5px 23px; border-bottom:1px solid #ddd; background-position:0 1px; background-repeat:no-repeat; text-transform:uppercase; color:#e76200; }
 .account-login .button { float: right; }
@@ -2316,27 +2316,33 @@ tr.summary-details-excluded { font-style:italic; }
     top: 435px;
     left: 636px;
 }
+
+/* Contact us block -----------------------------------------------*/
 .contactsBlock {
-    height: 400px;
-    width: 800px;
+    height: 500px;
+    width: 900px;
     border: 2px solid grey;
     margin: auto auto;
+    background: whitesmoke;
+    opacity: 0.9;
 }
 .contactsMain {
     background: url(../images/contacts_bg.png) 0 0 no-repeat;
-    padding: 310px 0 200px 0;
+    padding: 150px 0 200px 0;
+    margin: 166px 0 0 0;
 }
 .contactsBlock .cfieldset {
-    margin: 115px 100px 0 0;
+    margin: 0 170px 0 0;
     float: right;
     width: 510px;
 }
 .contactsBlock .cneedhelp {
     width: 100px;
-    height: 300px;
+    height: 420px;
     background: grey;
     margin: 40px 0 0 30px;
     float: left;
+    border: 1px dotted white;
 }
 .contactsBlock textarea {
     border: none;
@@ -2345,4 +2351,23 @@ tr.summary-details-excluded { font-style:italic; }
 }
 .contactsBlock input {
     border: none;
+}
+.contactsBlock .cinfo {
+    font-size: 13px;
+    margin: 40px 40px 40px 200px;
+}
+.contactsBlock .buttons-set {
+    margin: 0 170px 0 0;
+    clear: right;
+}
+
+/** FAQ block -------------------------------------------------*/
+.std {
+    margin: 170px 0 50px 180px;
+}
+.fblock {
+    width: 900px;
+    background: white;
+    -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    padding: 20px;
 }
