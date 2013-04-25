@@ -39,19 +39,34 @@
 <div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
 <div class="product-view">
     <div class="product-essential">
+        <div class="prod-breadcrumbs">
+            <!--//-->
+        </div>
     <form action="<?php echo $this->getSubmitUrl($_product) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
         <div class="no-display">
             <input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
             <input type="hidden" name="related_product" id="related-products-field" value="" />
         </div>
+        <div class="product-name">
+            <h1><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
+        </div>
 
         <div class="product-shop">
-            <div class="product-name">
-                <h1><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
+            <div class="product-atts">
+                <?php
+                    //var_dump($_product);
+                    echo 'Model: ', $_product->getModel();
+                    echo '<br/>Color code: ', $_product->getColorCode();
+                    echo '<br/>Frame color: ', $_product->getFrameColor();
+                    echo '<br/>Lens color: ', $_product->getLensColor();
+                    echo '<br/>Size: ', $_product->getSize(), '<span class="size_help"> ?</span>';
+                ?>
+                <div class="more-views-custom">
+                    <?php echo $this->getChildHtml('mviews') ?>
+                </div>
             </div>
 
             <?php //echo $this->getReviewsSummaryHtml($_product, false, true)?>
-            <?php echo $this->getChildHtml('product_type_data') ?>
             <?php echo $this->getTierPriceHtml() ?>
             <?php echo $this->getChildHtml('extrahint') ?>
 
@@ -69,10 +84,10 @@
             <?php endif; ?>
 
             <?php if ($_product->getShortDescription()):?>
-                <div class="short-description">
+                <!--div class="short-description">
                     <h2><?php echo $this->__('Quick Overview') ?></h2>
                     <div class="std"><?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?></div>
-                </div>
+                </div-->
             <?php endif;?>
 
             <?php echo $this->getChildHtml('other');?>
@@ -83,8 +98,13 @@
 
         </div>
 
+        <div class="brand-desc">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </div>
+
         <div class="product-img-box">
             <?php echo $this->getChildHtml('media') ?>
+            <?php echo $this->getChildHtml('product_type_data') ?>
         </div>
 
         <div class="clearer"></div>
@@ -143,6 +163,10 @@
         }.bind(productAddToCartForm);
     //]]>
     </script>
+    </div>
+
+    <div class="product-style-desc">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
     </div>
 
     <div class="product-collateral">

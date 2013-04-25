@@ -25,9 +25,9 @@
  */
 
 /**
- * Product media data template
+ * Product mviews data template
  *
- * @see Mage_Catalog_Block_Product_View_Media
+ * @see Mage_Catalog_Block_Product_View_Mviews
  */
 ?>
 <?php
@@ -35,14 +35,8 @@
     $_helper = $this->helper('catalog/output');
 ?>
 
-<p class="product-image">
-    <?php
-        $_img = '<img src="'.$this->helper('catalog/image')->init($_product, 'image')->resize(470, 270).'" alt="'.$this->htmlEscape($this->getImageLabel()).'" title="'.$this->htmlEscape($this->getImageLabel()).'" />';
-        echo $_helper->productAttribute($_product, $_img, 'image');
-    ?>
-</p>
-<?php if (count($this->getGalleryImages()) > 0): ?>
-<div class="more-views">
+
+<div class="more-views-custom">
     <ul>
     <?php foreach ($this->getGalleryImages() as $_image): ?>
         <li>
@@ -51,4 +45,4 @@
     <?php endforeach; ?>
     </ul>
 </div>
-<?php endif; ?>
+
